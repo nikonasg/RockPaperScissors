@@ -8,6 +8,33 @@ public class RockPaperScissors {
 	}
 }
 
+enum Choice {
+	ROCK, PAPER, SCISSORS;
+}
+
+class OpponentPlayer {
+	final boolean isMaster;
+	private int position = 0;
+	private final Choice[] choices = {Choice.ROCK, Choice.PAPER, Choice.SCISSORS, 
+		Choice.PAPER, Choice.SCISSORS, Choice.ROCK, Choice.ROCK};
+
+	OpponentPlayer(boolean isMaster) {
+		this.isMaster = isMaster;
+	}
+
+	public Choice getChoice(Choice playerChoice) {
+		if (isMaster) {
+			//TODO implement AI here
+			return null;
+		}
+		else {
+			Choice c = choices[position];
+			position = (position + 1) % choices.length;
+			return c;
+		}
+	}
+}
+
 /*
 
 ----------------------- Using String to model weapons
