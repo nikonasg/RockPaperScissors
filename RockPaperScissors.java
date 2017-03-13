@@ -1,10 +1,78 @@
 import java.util.Scanner;
 
 public class RockPaperScissors {
+	public static int drawGame;
+	public static int computerGame;
+	public static int playerGame;
+
+	public static String name;
+	public static int rounds;
 
 	public static void main(String[] args) {
-		System.out.println("Hello");
+		Scanner scan = new Scanner(System.in);
+		intro();
+		play(rounds, name, scan);
 
+
+	}
+	public static void intro() {
+		
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Welcome to ROCK PAPER SCISSORS. I, Computer, will be your opponent.\n" + 
+			"Please type in your name and press return: ");
+		name = scan.nextLine();
+		System.out.println("\nWelcome " + name + ".");
+		System.out.println("\nAll right " + name + ". How many rounds would you like to play?");
+		System.out.print("Enter the number of rounds you want to play and press return: ");
+		rounds = scan.nextInt();
+		scan.nextLine();
+		System.out.println();
+
+	}
+	public static void play(int rounds, String name, Scanner scan) {
+		OpponentPlayer computer = new OpponentPlayer(false);
+
+		for(int i = 0; i < rounds; i++) {
+			System.out.println("Round " + (i + 1) + ".");
+			System.out.println(name + ", please enter your choice for this round.");
+			System.out.print("1 for ROCK, 2 for PAPER, and 3 for SCISSORS: ");
+			int pick = scan.nextInt() - 1;
+			scan.nextLine();
+			Choice playerChoice = Choice.values()[pick];
+			Choice computerChoice = computer.getChoice(playerChoice);
+			System.out.println("Computer picked " +  computerChoice +  ", " + name + " picked " + playerChoice + ".");
+			System.out.println();
+
+			if(computerChoice == playerChoice) {
+				drawGame++;
+				System.out.println("We picked the same thing! This round is a draw.");
+				System.out.println(); 
+				
+			}
+			else if (playerChoice.ordinal() > computerChoice.ordinal()) {
+				playerGame++;
+				System.out.println(name + " wins!");
+				
+
+
+			}
+			else if (playerChoice.ordinal() < computerChoice.ordinal()) {
+				computerGame++;
+				System.out.println("Computer wins!");
+				
+
+			}
+			(SCISSORS + 1) % Choice[].length;
+		}
+		System.out.println();
+		System.out.println("Number of games of ROCK PAPER SCISSORS: " + rounds);
+		System.out.println("Number of times Computer won: " + computerGame);
+		System.out.println("Number of times " + name + " won: " + playerGame);
+		System.out.println("Number of draws: " + drawGame);
+		if(computerGame == playerGame) {
+				System.out.println("We are evenly matched.");
+		}
+	
 	}
 }
 
