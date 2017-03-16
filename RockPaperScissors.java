@@ -46,23 +46,16 @@ public class RockPaperScissors {
 			if(computerChoice == playerChoice) {
 				drawGame++;
 				System.out.println("We picked the same thing! This round is a draw.");
-				System.out.println(); 
-				
 			}
-			else if (playerChoice.ordinal() > computerChoice.ordinal()) {
+			else if (playerChoice.ordinal() == (computerChoice.ordinal() + 1) % Choice.values().length) {
 				playerGame++;
 				System.out.println(name + " wins!");
-				
-
-
 			}
-			else if (playerChoice.ordinal() < computerChoice.ordinal()) {
+			else {
 				computerGame++;
 				System.out.println("Computer wins!");
-				
-
 			}
-			(SCISSORS + 1) % Choice[].length;
+			System.out.println();
 		}
 		System.out.println();
 		System.out.println("Number of games of ROCK PAPER SCISSORS: " + rounds);
@@ -70,7 +63,14 @@ public class RockPaperScissors {
 		System.out.println("Number of times " + name + " won: " + playerGame);
 		System.out.println("Number of draws: " + drawGame);
 		if(computerGame == playerGame) {
-				System.out.println("We are evenly matched.");
+			System.out.println("We are evenly matched.");
+		}
+		else if (playerGame > computerGame) {
+			System.out.println("You, " + name + ", are a master at ROCK, PAPER, SCISSORS");
+		}
+		else if (computerGame > playerGame) {
+			System.out.println("I, Computer, am a master at ROCK, PAPER, SCISSORS");
+
 		}
 	
 	}
@@ -83,8 +83,7 @@ enum Choice {
 class OpponentPlayer {
 	final boolean isMaster;
 	private int position = 0;
-	private final Choice[] choices = {Choice.ROCK, Choice.PAPER, Choice.SCISSORS, 
-		Choice.PAPER, Choice.SCISSORS, Choice.ROCK, Choice.ROCK};
+	private final Choice[] choices = {Choice.ROCK, Choice.PAPER, Choice.SCISSORS, Choice.PAPER, Choice.SCISSORS, Choice.ROCK, Choice.ROCK};
 
 	OpponentPlayer(boolean isMaster) {
 		this.isMaster = isMaster;
@@ -148,4 +147,21 @@ int intFromEnum = nikWeapon.ordinal(); // 0
 Weapon enumFromString = Weapon.valueOf("SWORD"); // Weapon.SWORD;
 Weapon enumFromint = Weapon.values()[0]; // Weapon.SWORD;
 
+-----------------------
+
+0 % 3 == 0
+1 % 3 == 1
+2 % 3 == 2
+
+3 % 3 == 0
+4 % 3 == 1
+5 % 3 == 2
+
+6 % 3 == 0
+7 % 3 == 1
+8 % 3 == 2
+
+9 % 3 == 0
+10 % 3 == 1
+11 % 3 == 2
 */
