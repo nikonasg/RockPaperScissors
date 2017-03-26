@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+//TODO program AI, user input
 public class RockPaperScissors {
 	public static int drawGame;
 	public static int computerGame;
@@ -30,7 +30,7 @@ public class RockPaperScissors {
 
 	}
 	public static void play(int rounds, String name, Scanner scan) {
-		OpponentPlayer computer = new OpponentPlayer(false);
+		OpponentPlayer computer = new OpponentPlayer(name.equals("Nik") ? true : false);
 
 		for(int i = 0; i < rounds; i++) {
 			System.out.println("Round " + (i + 1) + ".");
@@ -49,11 +49,17 @@ public class RockPaperScissors {
 			}
 			else if (playerChoice.ordinal() == computerChoice.ordinal() + 1 || (computerChoice.ordinal() == 2 && playerChoice.ordinal() == 0)) {
 				playerGame++;
-				System.out.println(name + " wins!");
+				System.out.println(playerChoice.name() + 
+					(playerChoice == Choice.ROCK && computerChoice == Choice.SCISSORS ? " breaks ": 
+					(playerChoice == Choice.PAPER && computerChoice == Choice.ROCK ? " covers " : " cut ")) 
+					+ computerChoice.name() + ". You win.");
 			}
 			else {
 				computerGame++;
-				System.out.println("Computer wins!");
+				System.out.println(computerChoice.name() + 
+					(computerChoice == Choice.ROCK && playerChoice == Choice.SCISSORS ? " breaks ":
+					(computerChoice == Choice.PAPER && playerChoice == Choice.ROCK ? " covers " : " cut "))
+					 + playerChoice.name() + ". I win.");
 			}
 			System.out.println();
 		}
@@ -66,10 +72,10 @@ public class RockPaperScissors {
 			System.out.println("We are evenly matched.");
 		}
 		else if (playerGame > computerGame) {
-			System.out.println("You, " + name + ", are a master at ROCK, PAPER, SCISSORS");
+			System.out.println("You, " + name + ", are a master at ROCK, PAPER, SCISSORS.");
 		}
 		else if (computerGame > playerGame) {
-			System.out.println("I, Computer, am a master at ROCK, PAPER, SCISSORS");
+			System.out.println("I, Computer, am a master at ROCK, PAPER, SCISSORS.");
 
 		}
 	
