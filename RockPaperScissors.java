@@ -1,6 +1,9 @@
+
 import java.util.Scanner;
 //TODO program AI, user input
+
 public class RockPaperScissors {
+
 	public static int drawGame;
 	public static int computerGame;
 	public static int playerGame;
@@ -13,13 +16,13 @@ public class RockPaperScissors {
 		intro();
 		play(rounds, name, scan);
 
-
 	}
+
 	public static void intro() {
-		
+
 		Scanner scan = new Scanner(System.in);
-		System.out.print("Welcome to ROCK PAPER SCISSORS. I, Computer, will be your opponent.\n" + 
-			"Please type in your name and press return: ");
+		System.out.print("Welcome to ROCK PAPER SCISSORS. I, Computer, will be your opponent.\n"
+				+ "Please type in your name and press return: ");
 		name = scan.nextLine();
 		System.out.println("\nWelcome " + name + ".");
 		System.out.println("\nAll right " + name + ". How many rounds would you like to play?");
@@ -29,10 +32,11 @@ public class RockPaperScissors {
 		System.out.println();
 
 	}
+
 	public static void play(int rounds, String name, Scanner scan) {
 		OpponentPlayer computer = new OpponentPlayer(name.equals("Nik") ? true : false);
 
-		for(int i = 0; i < rounds; i++) {
+		for (int i = 0; i < rounds; i++) {
 			System.out.println("Round " + (i + 1) + ".");
 			System.out.println(name + ", please enter your choice for this round.");
 			System.out.print("1 for ROCK, 2 for PAPER, and 3 for SCISSORS: ");
@@ -40,26 +44,24 @@ public class RockPaperScissors {
 			scan.nextLine();
 			Choice playerChoice = Choice.values()[pick];
 			Choice computerChoice = computer.getChoice(playerChoice);
-			System.out.println("Computer picked " +  computerChoice +  ", " + name + " picked " + playerChoice + ".");
+			System.out.println("Computer picked " + computerChoice + ", " + name + " picked " + playerChoice + ".");
 			System.out.println();
 
-			if(computerChoice == playerChoice) {
+			if (computerChoice == playerChoice) {
 				drawGame++;
 				System.out.println("We picked the same thing! This round is a draw.");
-			}
-			else if (playerChoice.ordinal() == computerChoice.ordinal() + 1 || (computerChoice.ordinal() == 2 && playerChoice.ordinal() == 0)) {
+			} else if (playerChoice.ordinal() == computerChoice.ordinal() + 1 || (computerChoice.ordinal() == 2 && playerChoice.ordinal() == 0)) {
 				playerGame++;
-				System.out.println(playerChoice.name() + 
-					(playerChoice == Choice.ROCK && computerChoice == Choice.SCISSORS ? " breaks ": 
-					(playerChoice == Choice.PAPER && computerChoice == Choice.ROCK ? " covers " : " cut ")) 
-					+ computerChoice.name() + ". You win.");
-			}
-			else {
+				System.out.println(playerChoice.name()
+						+ (playerChoice == Choice.ROCK && computerChoice == Choice.SCISSORS ? " breaks "
+								: (playerChoice == Choice.PAPER && computerChoice == Choice.ROCK ? " covers " : " cut "))
+						+ computerChoice.name() + ". You win.");
+			} else {
 				computerGame++;
-				System.out.println(computerChoice.name() + 
-					(computerChoice == Choice.ROCK && playerChoice == Choice.SCISSORS ? " breaks ":
-					(computerChoice == Choice.PAPER && playerChoice == Choice.ROCK ? " covers " : " cut "))
-					 + playerChoice.name() + ". I win.");
+				System.out.println(computerChoice.name()
+						+ (computerChoice == Choice.ROCK && playerChoice == Choice.SCISSORS ? " breaks "
+								: (computerChoice == Choice.PAPER && playerChoice == Choice.ROCK ? " covers " : " cut "))
+						+ playerChoice.name() + ". I win.");
 			}
 			System.out.println();
 		}
@@ -68,17 +70,15 @@ public class RockPaperScissors {
 		System.out.println("Number of times Computer won: " + computerGame);
 		System.out.println("Number of times " + name + " won: " + playerGame);
 		System.out.println("Number of draws: " + drawGame);
-		if(computerGame == playerGame) {
+		if (computerGame == playerGame) {
 			System.out.println("We are evenly matched.");
-		}
-		else if (playerGame > computerGame) {
+		} else if (playerGame > computerGame) {
 			System.out.println("You, " + name + ", are a master at ROCK, PAPER, SCISSORS.");
-		}
-		else if (computerGame > playerGame) {
+		} else if (computerGame > playerGame) {
 			System.out.println("I, Computer, am a master at ROCK, PAPER, SCISSORS.");
 
 		}
-	
+
 	}
 }
 
@@ -87,6 +87,7 @@ enum Choice {
 }
 
 class OpponentPlayer {
+
 	final boolean isMaster;
 	private int position = 0;
 	private final Choice[] choices = {Choice.ROCK, Choice.PAPER, Choice.SCISSORS, Choice.PAPER, Choice.SCISSORS, Choice.ROCK, Choice.ROCK};
@@ -99,8 +100,7 @@ class OpponentPlayer {
 		if (isMaster) {
 			//TODO implement AI here
 			return null;
-		}
-		else {
+		} else {
 			Choice c = choices[position];
 			position = (position + 1) % choices.length;
 			return c;
@@ -170,4 +170,4 @@ Weapon enumFromint = Weapon.values()[0]; // Weapon.SWORD;
 9 % 3 == 0
 10 % 3 == 1
 11 % 3 == 2
-*/
+ */
