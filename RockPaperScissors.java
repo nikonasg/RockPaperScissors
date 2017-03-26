@@ -47,7 +47,7 @@ public class RockPaperScissors {
 				drawGame++;
 				System.out.println("We picked the same thing! This round is a draw.");
 			}
-			else if (playerChoice.ordinal() == (computerChoice.ordinal() + 1) % Choice.values().length) {
+			else if (playerChoice.ordinal() == computerChoice.ordinal() + 1 || (computerChoice.ordinal() == 2 && playerChoice.ordinal() == 0)) {
 				playerGame++;
 				System.out.println(name + " wins!");
 			}
